@@ -1,0 +1,65 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "Prompt",
+ "creation": "2025-01-25 22:14:59.425824",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "founding_year",
+  "customer_care_number",
+  "headquarters"
+ ],
+ "fields": [
+  {
+   "fieldname": "founding_year",
+   "fieldtype": "Int",
+   "in_list_view": 1,
+   "label": "Founding_Year"
+  },
+  {
+   "fieldname": "customer_care_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Customer Care Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "headquarters",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Headquarters",
+   "reqd": 1
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [
+  {
+   "link_doctype": "Airplane",
+   "link_fieldname": "Airline"
+  }
+ ],
+ "modified": "2025-01-27 23:17:33.435255",
+ "modified_by": "Administrator",
+ "module": "Airplane app",
+ "name": "Airline",
+ "naming_rule": "Set by user",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
