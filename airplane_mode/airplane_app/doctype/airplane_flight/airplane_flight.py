@@ -34,19 +34,10 @@ class AirplaneFlight(WebsiteGenerator, Document):
         self.name = f"{airplane_name}-{formatted_date}-{serial_number}"
 
     def on_submit(self):
-        """
-        Update status to 'Completed' upon submission.
-        """
+        
         if self.status != "Cancelled":
             self.status = "Completed"
 
-    def on_submit(self):
-        """
-        Set the Status field to 'Completed' upon document submission.
-        """
-        self.status = "Completed"
-
-    def on_submit(self):
         """Submit all Airplane Tickets linked to this flight that are Boarded."""
         
         # Fetch all tickets related to this flight where status is 'Boarded'

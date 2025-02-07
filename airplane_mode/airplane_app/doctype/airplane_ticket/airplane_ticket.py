@@ -48,7 +48,6 @@ class AirplaneTicket(Document):
         random_letter = random.choice(['A', 'B', 'C', 'D', 'E'])  
         self.seat = f"{random_number}{random_letter}"
 
-    def before_insert(self):
         self.validate_seat_capacity()
 
     def validate_seat_capacity(self):
