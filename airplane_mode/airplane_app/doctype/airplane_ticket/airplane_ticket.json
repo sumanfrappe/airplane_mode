@@ -66,7 +66,7 @@
   {
    "fetch_from": "flight.time_of_departure",
    "fieldname": "departure_time",
-   "fieldtype": "Date",
+   "fieldtype": "Time",
    "label": "Departure Time",
    "reqd": 1
   },
@@ -150,7 +150,7 @@
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2025-01-28 01:55:55.250083",
+ "modified": "2025-02-06 12:42:14.558874",
  "modified_by": "Administrator",
  "module": "Airplane app",
  "name": "Airplane Ticket",

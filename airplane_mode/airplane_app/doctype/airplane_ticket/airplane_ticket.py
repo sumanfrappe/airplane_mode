@@ -17,7 +17,6 @@ class AirplaneTicket(Document):
 
 
     def validate(self):
-        # Ensure all add-ons are unique
         self.remove_duplicate_add_ons()
 
         # Calculate Total Amount
@@ -45,6 +44,32 @@ class AirplaneTicket(Document):
         """
         Set the Seat field to a random combination of a number and a letter (A-E) before the document is inserted.
         """
-        random_number = random.randint(1, 99)  # Generate a random integer between 1 and 99
-        random_letter = random.choice(['A', 'B', 'C', 'D', 'E'])  # Choose a random letter from A to E
+        random_number = random.randint(1, 99) 
+        random_letter = random.choice(['A', 'B', 'C', 'D', 'E'])  
         self.seat = f"{random_number}{random_letter}"
+
+    def before_insert(self):
+        self.validate_seat_capacity()
+
+    def validate_seat_capacity(self):
+        if not self.flight:
+            frappe.throw("This ticket must be linked to a flight.")
+
+        # Fetch the flight document
+        flight = frappe.get_doc("Airplane Flight", self.flight)
+
+        if not flight.airplane:
+            frappe.throw("The selected flight is not linked to an airplane.")
+
+        # Fetch the linked airplane
+        airplane = frappe.get_doc("Airplane", flight.airplane)
+
+        # Count existing tickets for this flight
+        ticket_count = frappe.db.count('Airplane Ticket', {'flight': self.flight})
+
+        # Validate seat capacity
+        if ticket_count >= airplane.capacity:
+            frappe.throw(
+                f"Booking failed: The flight is fully booked. "
+                f"All {airplane.capacity} seats have been reserved."
+            )

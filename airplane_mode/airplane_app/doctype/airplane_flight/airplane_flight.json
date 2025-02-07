@@ -1,6 +1,7 @@
 {
  "actions": [],
- "autoname": "{airplane}-{date_of_departure}-{#####}",
+ "allow_guest_to_view": 1,
+ "autoname": "{airplane}-{date_of_departure}-{#####}.",
  "creation": "2025-01-28 00:21:45.811130",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -19,7 +20,9 @@
   "column_break_wpph",
   "time_of_departure",
   "duration",
-  "amended_from"
+  "amended_from",
+  "route",
+  "published"
  ],
  "fields": [
   {
@@ -116,9 +119,22 @@
    "print_hide": 1,
    "read_only": 1,
    "search_index": 1
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "route"
+  },
+  {
+   "default": "0",
+   "fieldname": "published",
+   "fieldtype": "Check",
+   "label": "published"
   }
  ],
+ "has_web_view": 1,
  "index_web_pages_for_search": 1,
+ "is_published_field": "published",
  "is_submittable": 1,
  "links": [
   {
@@ -126,7 +142,7 @@
    "link_fieldname": "Flight"
   }
  ],
- "modified": "2025-01-28 02:01:16.082957",
+ "modified": "2025-02-06 18:13:21.849622",
  "modified_by": "Administrator",
  "module": "Airplane app",
  "name": "Airplane Flight",
@@ -147,6 +163,7 @@
    "write": 1
   }
  ],
+ "route": "flights",
  "sort_field": "modified",
  "sort_order": "DESC",
  "states": []

@@ -1,9 +1,10 @@
-from frappe.model.document import Document
+from frappe.website.website_generator import WebsiteGenerator
 import frappe
 from frappe.utils import formatdate
+from frappe.model.document import Document
 
 
-class AirplaneFlight(Document):
+class AirplaneFlight(WebsiteGenerator, Document):
     def autoname(self):
         """
         Generate name in the format: {Airplane}-{MM-YYYY}-{#####}.
@@ -44,3 +45,20 @@ class AirplaneFlight(Document):
         Set the Status field to 'Completed' upon document submission.
         """
         self.status = "Completed"
+
+    def on_submit(self):
+        """Submit all Airplane Tickets linked to this flight that are Boarded."""
+        
+        # Fetch all tickets related to this flight where status is 'Boarded'
+        tickets = frappe.get_all("Airplane Ticket",
+            filters={"flight": self.name, "status": "Boarded"},
+            fields=["name"]
+        )
+
+        for ticket in tickets:
+            ticket_doc = frappe.get_doc("Airplane Ticket", ticket["name"])
+            if ticket_doc.docstatus == 0:  
+                ticket_doc.submit()  
+                frappe.msgprint(f"Ticket {ticket_doc.name} has been submitted.")
+
+        frappe.msgprint("All boarded tickets have been submitted.")
