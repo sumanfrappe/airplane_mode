@@ -78,6 +78,14 @@ app_pages = [
 # automatically create page for each record of this doctype
 website_generators = ["Airplane Flight"]
 
+# hooks.py
+
+# Define new Doctype
+doctype_list = [
+    "Rent Setting"
+]
+
+
 # Jinja
 # ----------
 
@@ -157,22 +165,18 @@ website_generators = ["Airplane Flight"]
 # ---------------
 
 # scheduler_events = {
-# 	"all": [
-# 		"airplane_mode.tasks.all"
-# 	],
-# 	"daily": [
-# 		"airplane_mode.tasks.daily"
-# 	],
-# 	"hourly": [
-# 		"airplane_mode.tasks.hourly"
-# 	],
-# 	"weekly": [
-# 		"airplane_mode.tasks.weekly"
-# 	],
-# 	"monthly": [
-# 		"airplane_mode.tasks.monthly"
-# 	],
+# 	"mntly": {
+#         "* * * * *": [
+#         "airplane_mode.airport_shop_management.doctype.rent_payment.rent_payment.send_rent_reminder"
+#         	]
+#     }
 # }
+
+scheduler_events = {
+	"monthly": [
+        "airplane_mode.airport_shop_management.doctype.rent_payment.rent_payment.send_rent_reminder"
+        	]
+}
 
 # Testing
 # -------

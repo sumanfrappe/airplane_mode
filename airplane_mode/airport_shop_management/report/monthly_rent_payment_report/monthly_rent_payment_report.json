@@ -1,0 +1,28 @@
+{
+ "add_total_row": 0,
+ "columns": [],
+ "creation": "2025-02-10 15:47:18.976369",
+ "disabled": 0,
+ "docstatus": 0,
+ "doctype": "Report",
+ "filters": [],
+ "idx": 0,
+ "is_standard": "Yes",
+ "letterhead": null,
+ "modified": "2025-02-10 15:51:37.436277",
+ "modified_by": "Administrator",
+ "module": "Airport Shop Management",
+ "name": "Monthly Rent Payment Report",
+ "owner": "Administrator",
+ "prepared_report": 0,
+ "query": "SELECT \n    CONCAT(YEAR(rp.payment_date), '-', LPAD(MONTH(rp.payment_date), 2, '0')) AS \"Month:Data:100\",\n    rp.tenant AS \"Tenant:Link/Tenant:200\",\n    rp.shop AS \"Shop:Link/Shop:150\",\n    SUM(rp.rent_amount) AS \"Total Rent Collected:Currency:150\",\n    COUNT(rp.name) AS \"Payments Made:Int:100\"\nFROM \n    `tabRent Payment` rp\nWHERE \n    rp.status = 'Paid'\nGROUP BY \n    YEAR(rp.payment_date), MONTH(rp.payment_date), rp.tenant, rp.shop\nORDER BY \n    YEAR(rp.payment_date) DESC, MONTH(rp.payment_date) DESC;\n",
+ "ref_doctype": "Rent Payment",
+ "report_name": "Monthly Rent Payment Report",
+ "report_type": "Query Report",
+ "roles": [
+  {
+   "role": "System Manager"
+  }
+ ],
+ "timeout": 0
+}

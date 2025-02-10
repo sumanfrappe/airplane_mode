@@ -17,12 +17,14 @@
   "destination_airport_code",
   "section_break_gjuq",
   "date_of_departure",
-  "column_break_wpph",
-  "time_of_departure",
   "duration",
-  "amended_from",
+  "time_of_departure",
+  "column_break_wpph",
   "route",
-  "published"
+  "published",
+  "crew_members",
+  "amended_from",
+  "gate_number"
  ],
  "fields": [
   {
@@ -111,6 +113,23 @@
    "fieldtype": "Column Break"
   },
   {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "route"
+  },
+  {
+   "default": "0",
+   "fieldname": "published",
+   "fieldtype": "Check",
+   "label": "published"
+  },
+  {
+   "fieldname": "crew_members",
+   "fieldtype": "Table",
+   "label": "Crew Members",
+   "options": "Flight Crew Member"
+  },
+  {
    "fieldname": "amended_from",
    "fieldtype": "Link",
    "label": "Amended From",
@@ -121,15 +140,11 @@
    "search_index": 1
   },
   {
-   "fieldname": "route",
-   "fieldtype": "Data",
-   "label": "route"
-  },
-  {
-   "default": "0",
-   "fieldname": "published",
-   "fieldtype": "Check",
-   "label": "published"
+   "fieldname": "gate_number",
+   "fieldtype": "Link",
+   "label": " Gate Number",
+   "options": "Gate",
+   "reqd": 1
   }
  ],
  "has_web_view": 1,
@@ -142,7 +157,7 @@
    "link_fieldname": "Flight"
   }
  ],
- "modified": "2025-02-07 18:53:02.282637",
+ "modified": "2025-02-10 19:25:08.280317",
  "modified_by": "Administrator",
  "module": "Airplane app",
  "name": "Airplane Flight",

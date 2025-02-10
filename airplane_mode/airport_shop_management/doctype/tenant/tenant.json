@@ -1,0 +1,91 @@
+{
+ "actions": [],
+ "autoname": "format:TENANT-{####}",
+ "creation": "2025-02-10 11:58:19.958455",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "tenant_name",
+  "email",
+  "phone_number",
+  "lease_start",
+  "lease_end",
+  "shop",
+  "rent_amount",
+  "status"
+ ],
+ "fields": [
+  {
+   "fieldname": "tenant_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "tenant_name",
+   "reqd": 1
+  },
+  {
+   "fieldname": "email",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "email",
+   "reqd": 1
+  },
+  {
+   "fieldname": "phone_number",
+   "fieldtype": "Data",
+   "label": "phone_number"
+  },
+  {
+   "fieldname": "lease_start",
+   "fieldtype": "Date",
+   "label": "lease_start"
+  },
+  {
+   "fieldname": "lease_end",
+   "fieldtype": "Date",
+   "label": "lease_end"
+  },
+  {
+   "fetch_from": "shop.currency",
+   "fieldname": "rent_amount",
+   "fieldtype": "Currency",
+   "label": "rent_amount"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "label": "status",
+   "options": "Active\nExpired\nTerminated"
+  },
+  {
+   "fieldname": "shop",
+   "fieldtype": "Link",
+   "label": "shop",
+   "options": "Shop"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-10 14:22:24.038535",
+ "modified_by": "Administrator",
+ "module": "Airport Shop Management",
+ "name": "Tenant",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

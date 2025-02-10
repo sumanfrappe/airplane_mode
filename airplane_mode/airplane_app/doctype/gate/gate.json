@@ -1,0 +1,52 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "autoname": "format:{terminal}-{gate_number}",
+ "creation": "2025-02-10 11:39:56.884967",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "gate_number",
+  "terminal"
+ ],
+ "fields": [
+  {
+   "fieldname": "gate_number",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Gate Number",
+   "reqd": 1
+  },
+  {
+   "fieldname": "terminal",
+   "fieldtype": "Select",
+   "label": "terminal",
+   "options": "Terminal 1\nTerminal 2\nTerminal 3"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-10 11:43:45.512951",
+ "modified_by": "Administrator",
+ "module": "Airplane app",
+ "name": "Gate",
+ "naming_rule": "Expression",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -24,7 +24,8 @@
   "departure_time",
   "column_break_9ldp",
   "duration",
-  "amended_from"
+  "amended_from",
+  "gate_number"
  ],
  "fields": [
   {
@@ -146,11 +147,18 @@
   {
    "fieldname": "section_break_gjqw",
    "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "flight.gate_number",
+   "fieldname": "gate_number",
+   "fieldtype": "Data",
+   "label": " Gate Number",
+   "reqd": 1
   }
  ],
  "is_submittable": 1,
  "links": [],
- "modified": "2025-02-07 18:56:02.523245",
+ "modified": "2025-02-10 19:28:45.718366",
  "modified_by": "Administrator",
  "module": "Airplane app",
  "name": "Airplane Ticket",
