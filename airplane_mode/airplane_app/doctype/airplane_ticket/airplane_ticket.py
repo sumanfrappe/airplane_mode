@@ -60,10 +60,8 @@ class AirplaneTicket(Document):
         if not flight.airplane:
             frappe.throw("The selected flight is not linked to an airplane.")
 
-        # Fetch the linked airplane
         airplane = frappe.get_doc("Airplane", flight.airplane)
 
-        # Count existing tickets for this flight
         ticket_count = frappe.db.count('Airplane Ticket', {'flight': self.flight})
 
         # Validate seat capacity

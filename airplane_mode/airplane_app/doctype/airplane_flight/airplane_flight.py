@@ -12,10 +12,8 @@ class AirplaneFlight(WebsiteGenerator, Document):
         if not self.airplane or not self.date_of_departure:
             frappe.throw("Airplane and Date of Departure are mandatory for naming.")
 
-        # Format the date as MM-YYYY
         formatted_date = formatdate(self.date_of_departure, "MM-YYYY")
 
-        # Fetch the airplane name
         airplane_name = frappe.get_value("Airplane", self.airplane, "name")
 
         # Get the current count for this Airplane + Date combination
@@ -27,10 +25,8 @@ class AirplaneFlight(WebsiteGenerator, Document):
             },
         )
 
-        # Increment the count for a unique serial number
         serial_number = f"{count + 1:05d}"
 
-        # Combine all parts to create the document name
         self.name = f"{airplane_name}-{formatted_date}-{serial_number}"
 
     def on_submit(self):
@@ -60,7 +56,6 @@ def update_gate_numbers():
     flights = frappe.get_all("Airplane Flight", fields=["name", "gate_number"])
     
     for flight in flights:
-        # Get all tickets linked to this flight
         tickets = frappe.get_all(
             "Airplane Ticket",
             filters={"flight": flight["name"]},
