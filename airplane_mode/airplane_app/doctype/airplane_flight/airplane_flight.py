@@ -57,10 +57,6 @@ class AirplaneFlight(WebsiteGenerator, Document):
    
 # Scheduled task to update gate_number in Airplane Ticket when gate_number in Airplane Flight changes.
 def update_gate_numbers():
-    """
-    Scheduled task to update gate_number in Airplane Ticket 
-    when gate_number in Airplane Flight changes.
-    """
     flights = frappe.get_all("Airplane Flight", fields=["name", "gate_number"])
     
     for flight in flights:
