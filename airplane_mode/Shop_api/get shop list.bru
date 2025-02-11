@@ -1,0 +1,20 @@
+meta {
+  name: get shop list
+  type: http
+  seq: 2
+}
+
+get {
+  url: http://demo.com:8000/api/resource/Shop?fields=["shop_number", "shop_name", "airport", "area", "status", "currency", "shop_type"]
+  body: none
+  auth: none
+}
+
+params:query {
+  fields: ["shop_number", "shop_name", "airport", "area", "status", "currency", "shop_type"]
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: token 7d1f67f5f4cc807:947c17750cb1ae0
+}

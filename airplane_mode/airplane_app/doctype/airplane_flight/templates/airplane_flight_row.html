@@ -1,11 +1,38 @@
-
 {% block content %}
 
+<style>
+    .ticket-container {
+        border: 1px solid #ccc;
+        padding: 15px;
+        margin-bottom: 15px;
+        border-radius: 8px; 
+        background-color: #f9f9f9; 
+    }
 
-<h4> {{ doc.airplane }} </h4>
-<p> {{doc.source_airport_code}} -> {{ doc.destination_airport_code }}</p>
-<p> {{frappe.utils.format_date(doc.date_of_departure, "d MMMM, YYYY")}} | {{ doc.time_of_departure }} | {{ frappe.utils.format_duration(doc.duration) }}</p>
+    .ticket-container h4 {
+        margin-bottom: 5px;
+        color: #333;
+    }
 
-<a href="{{ doc.route }}"> View Details </a>
+    .ticket-container p {
+        margin: 5px 0;
+        color: #555;
+    }
+
+    .view-details:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<section class="ticket-container">
+    <h5> {{ doc.airplane }} </h5>
+    <p> {{ doc.source_airport_code }} → {{ doc.destination_airport_code }}</p>
+    <p> 
+        {{ frappe.utils.format_date(doc.date_of_departure, "d MMMM, YYYY") }} | 
+        {{ doc.time_of_departure }} | 
+        {{ frappe.utils.format_duration(doc.duration) }}
+    </p>
+    <a href="{{ doc.route }}"> View Details </a>
+</section>
 
 {% endblock %}

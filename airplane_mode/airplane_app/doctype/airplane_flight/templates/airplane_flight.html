@@ -2,6 +2,20 @@
 
 {% block content %}
 
+<style>
+    .custom-button {
+        display: inline-block;
+        background-color: #007bff; 
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        text-decoration: none;
+        font-weight: bold;
+        border: none;
+    }
+
+</style>
+
 <div class="container">
     <h2> {{ name }} </h2>
 
@@ -17,7 +31,7 @@
         </ul>
 
         <a href="{{ frappe.utils.get_url('/book-ticket-web-form/new') }}?flight_name={{ doc.name }}" 
-            class="btn btn-primary">
+            class="custom-button">
             Book Flight
             </a>
 

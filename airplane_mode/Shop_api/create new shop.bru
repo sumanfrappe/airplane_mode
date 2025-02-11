@@ -1,0 +1,33 @@
+meta {
+  name: create new shop
+  type: http
+  seq: 3
+}
+
+post {
+  url: http://demo.com:8000/api/resource/Shop
+  body: json
+  auth: none
+}
+
+params:query {
+  : 
+}
+
+headers {
+  Content-Type: application/json
+  Authorization: token 7d1f67f5f4cc807:947c17750cb1ae0
+}
+
+body:json {
+  {
+    "shop_number": "SHOP-007",
+    "shop_name": "Demo shop",
+    "airport": "Mumbai Airport",
+    "area": 1100,
+    "status": "Available",
+    "currency": 4500,
+    "shop_type": "Normal"
+  }
+  
+}

@@ -54,25 +54,25 @@ class AirplaneFlight(WebsiteGenerator, Document):
 
         frappe.msgprint("All boarded tickets have been submitted.")
 
-    def on_update(self):
-        """Trigger a background job to update ticket gate numbers when flight gate changes."""
-        old_gate_number = frappe.db.get_value("Airplane Flight", self.name, "gate_number")
+   
+# Scheduled task to update gate_number in Airplane Ticket when gate_number in Airplane Flight changes.
+def update_gate_numbers():
+    """
+    Scheduled task to update gate_number in Airplane Ticket 
+    when gate_number in Airplane Flight changes.
+    """
+    flights = frappe.get_all("Airplane Flight", fields=["name", "gate_number"])
+    
+    for flight in flights:
+        # Get all tickets linked to this flight
+        tickets = frappe.get_all(
+            "Airplane Ticket",
+            filters={"flight": flight["name"]},
+            fields=["name", "gate_number"]
+        )
 
-        
-        if old_gate_number != self.gate_number:
-            # Enqueue the background job
-            frappe.enqueue("airplane_mode.airport_app.doctype.airplane_flight.airplane_flight.update_ticket_gate_numbers",
-                    flight_name=self.name, new_gate_number=self.gate_number)
-
-
-def update_ticket_gate_numbers(flight_name, new_gate_number):
-    tickets = frappe.get_all("Airplane Ticket", filters={"flight": flight_name}, fields=["name", "gate_number"])
-
-    if not tickets:
-        frappe.log_error(f"No tickets found for flight {flight_name}", "update_ticket_gate_numbers")
-
-    for ticket in tickets:
-        frappe.log_error(f"Updating Ticket: {ticket.name}, Old Gate: {ticket.get('gate_number')}", "update_ticket_gate_numbers")
-        frappe.db.set_value("Airplane Ticket", ticket.name, "gate_number", new_gate_number)
-
-    frappe.db.commit()
+        for ticket in tickets:
+            if ticket["gate_number"] != flight["gate_number"]:
+                # Update the gate number in the ticket
+                frappe.db.set_value("Airplane Ticket", ticket["name"], "gate_number", flight["gate_number"])
+                frappe.db.commit()

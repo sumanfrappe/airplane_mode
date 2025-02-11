@@ -153,38 +153,29 @@ doctype_list = [
 # ---------------
 # Hook on document methods and events
 
+
 # doc_events = {
-# 	"*": {
-# 		"on_update": "method",
-# 		"on_cancel": "method",
-# 		"on_trash": "method"
-# 	}
+#     "Airplane Flight": {
+#         "on_update": "airplane_mode.airplane_app.doctype.airplane_flight.airplane_flight.on_update"
+#     }
 # }
 
 # Scheduled Tasks
 # ---------------
 
-# scheduler_events = {
-# 	"mntly": {
-#         "* * * * *": [
-#         "airplane_mode.airport_shop_management.doctype.rent_payment.rent_payment.send_rent_reminder"
-#         	]
-#     }
-# }
-
-# scheduler_events = {
-# 	"monthly": [
-#         "airplane_mode.airport_shop_management.doctype.rent_payment.rent_payment.send_rent_reminder"
-#         	]
-# }
 
 scheduler_events = {
     "cron": {
         "* * * * *": [  
-            "airplane_mode.airplane_app.doctype.airplane_flight.airplane_flight.update_ticket_gate_numbers"
+            "airplane_mode.airplane_app.doctype.airplane_flight.airplane_flight.update_gate_numbers"
         ]
-    }
+    },
+
+	"monthly": [
+        "airplane_mode.airport_shop_management.doctype.rent_payment.rent_payment.send_rent_reminder"
+        	]
 }
+
 
 # Testing
 # -------
@@ -262,3 +253,6 @@ scheduler_events = {
 # 	"Logging DocType Name": 30  # days to retain logs
 # }
 
+fixtures = [
+    "Shop Type"
+]
