@@ -2,7 +2,7 @@ from frappe.website.website_generator import WebsiteGenerator
 import frappe
 from frappe.utils import formatdate
 from frappe.model.document import Document
-
+from frappe.utils.background_jobs import enqueue
 
 class AirplaneFlight(WebsiteGenerator, Document):
     def autoname(self):
@@ -53,3 +53,26 @@ class AirplaneFlight(WebsiteGenerator, Document):
                 frappe.msgprint(f"Ticket {ticket_doc.name} has been submitted.")
 
         frappe.msgprint("All boarded tickets have been submitted.")
+
+    def on_update(self):
+        """Trigger a background job to update ticket gate numbers when flight gate changes."""
+        old_gate_number = frappe.db.get_value("Airplane Flight", self.name, "gate_number")
+
+        
+        if old_gate_number != self.gate_number:
+            # Enqueue the background job
+            frappe.enqueue("airplane_mode.airport_app.doctype.airplane_flight.airplane_flight.update_ticket_gate_numbers",
+                    flight_name=self.name, new_gate_number=self.gate_number)
+
+
+def update_ticket_gate_numbers(flight_name, new_gate_number):
+    tickets = frappe.get_all("Airplane Ticket", filters={"flight": flight_name}, fields=["name", "gate_number"])
+
+    if not tickets:
+        frappe.log_error(f"No tickets found for flight {flight_name}", "update_ticket_gate_numbers")
+
+    for ticket in tickets:
+        frappe.log_error(f"Updating Ticket: {ticket.name}, Old Gate: {ticket.get('gate_number')}", "update_ticket_gate_numbers")
+        frappe.db.set_value("Airplane Ticket", ticket.name, "gate_number", new_gate_number)
+
+    frappe.db.commit()

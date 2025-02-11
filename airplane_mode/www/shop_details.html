@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Details</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/picnic">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+        }
+        h1 {
+            text-align: center;
+        }
+        .shop-details {
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background: #f9f9f9;
+        }
+        .back-link {
+            display: block;
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Shop Details</h1>
+    <div class="shop-details">
+        <p><strong>Shop Number:</strong> {{ shop.shop_number }}</p>
+        <p><strong>Shop Name:</strong> {{ shop.shop_name }}</p>
+        <p><strong>Airport:</strong> {{ shop.airport }}</p>
+        <p><strong>Shope Area:</strong> {{ shop.area }} sq ft</p>
+        <p><strong>status:</strong> {{ shop.status }}</p>
+        <p><strong>Rent Amount:</strong> {{ shop.currency }}</p>
+
+    </div>
+
+    {% if shop.status == "Available" %}
+        <a href="{{ frappe.utils.get_url('http://demo.com:8000/shop_leads/new') }}?shop_id={{ shop.name }}" class="button">
+            Apply for Rent
+        </a>
+    {% else %}
+        <p class="unavailable">This shop is currently not available for rent.</p>
+    {% endif %}
+
+</body>
+</html>

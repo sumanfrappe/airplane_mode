@@ -11,7 +11,8 @@
   "airport",
   "area",
   "status",
-  "currency"
+  "currency",
+  "shop_type"
  ],
  "fields": [
   {
@@ -37,22 +38,29 @@
    "options": "Available\nOccupied"
   },
   {
-   "fieldname": "currency",
-   "fieldtype": "Currency",
-   "label": "rent_amount"
-  },
-  {
    "fieldname": "shop_number",
    "fieldtype": "Data",
    "in_list_view": 1,
    "label": "shop_number",
    "reqd": 1,
    "unique": 1
+  },
+  {
+   "fieldname": "currency",
+   "fieldtype": "Currency",
+   "label": "rent_amount"
+  },
+  {
+   "fieldname": "shop_type",
+   "fieldtype": "Link",
+   "label": "shop_type",
+   "options": "Shop Type",
+   "reqd": 1
   }
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-10 13:29:03.363048",
+ "modified": "2025-02-11 14:37:50.245424",
  "modified_by": "Administrator",
  "module": "Airport Shop Management",
  "name": "Shop",
