@@ -5,13 +5,13 @@ meta {
 }
 
 get {
-  url: http://demo.com:8000/api/resource/Shop?fields=["shop_number", "shop_name", "airport", "area", "status", "currency", "shop_type"]
+  url: http://demo.com:8000/api/resource/Shop?fields=["*"]
   body: none
   auth: none
 }
 
 params:query {
-  fields: ["shop_number", "shop_name", "airport", "area", "status", "currency", "shop_type"]
+  fields: ["*"]
 }
 
 headers {

@@ -1,7 +1,6 @@
 {
  "actions": [],
  "allow_guest_to_view": 1,
- "autoname": "{airplane}-{date_of_departure}-{#####}.",
  "creation": "2025-01-28 00:21:45.811130",
  "doctype": "DocType",
  "engine": "InnoDB",
@@ -157,11 +156,10 @@
    "link_fieldname": "Flight"
   }
  ],
- "modified": "2025-02-10 19:25:08.280317",
+ "modified": "2025-02-12 11:45:27.143027",
  "modified_by": "Administrator",
  "module": "Airplane app",
  "name": "Airplane Flight",
- "naming_rule": "Expression",
  "owner": "Administrator",
  "permissions": [
   {

@@ -3,6 +3,7 @@ import frappe
 from frappe.utils import formatdate
 from frappe.model.document import Document
 from frappe.utils.background_jobs import enqueue
+import time
 
 class AirplaneFlight(WebsiteGenerator, Document):
     def autoname(self):
@@ -50,20 +51,35 @@ class AirplaneFlight(WebsiteGenerator, Document):
 
         frappe.msgprint("All boarded tickets have been submitted.")
 
-   
-# Scheduled task to update gate_number in Airplane Ticket when gate_number in Airplane Flight changes.
-def update_gate_numbers():
-    flights = frappe.get_all("Airplane Flight", fields=["name", "gate_number"])
-    
-    for flight in flights:
+    def update_gate_numbers(self, new_gate_number, flight):
         tickets = frappe.get_all(
             "Airplane Ticket",
-            filters={"flight": flight["name"]},
+            filters={"flight": flight},
             fields=["name", "gate_number"]
         )
 
         for ticket in tickets:
-            if ticket["gate_number"] != flight["gate_number"]:
+            if ticket["gate_number"] != new_gate_number:
                 # Update the gate number in the ticket
-                frappe.db.set_value("Airplane Ticket", ticket["name"], "gate_number", flight["gate_number"])
+                frappe.db.set_value("Airplane Ticket", ticket["name"], "gate_number", new_gate_number)
                 frappe.db.commit()
+
+        # frappe.publish_realtime("msgprint", f"process {tickets} completed", user=frappe.session.user)
+
+    def before_save(self):
+        # Get the current value from the database
+        old_gate_number = frappe.db.get_value("Airplane Flight", self.name, "gate_number")
+
+        # If gate_number has changed, trigger background update
+        if old_gate_number != self.gate_number:
+            frappe.enqueue(
+                self.update_gate_numbers,
+                new_gate_number=self.gate_number,
+                flight = self.name,
+                queue='short',
+                timeout=200,
+                is_async=True
+            )
+
+        # frappe.msgprint("request given to queue")
+

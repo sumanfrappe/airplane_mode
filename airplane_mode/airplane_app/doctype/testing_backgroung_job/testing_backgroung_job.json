@@ -1,0 +1,51 @@
+{
+ "actions": [],
+ "allow_rename": 1,
+ "creation": "2025-02-12 13:18:15.397695",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "first_name",
+  "gate_number"
+ ],
+ "fields": [
+  {
+   "fieldname": "first_name",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "first_name",
+   "options": "demo_doc",
+   "reqd": 1
+  },
+  {
+   "fetch_from": "first_name.gate_number",
+   "fieldname": "gate_number",
+   "fieldtype": "Data",
+   "label": "gate_number"
+  }
+ ],
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2025-02-12 13:23:44.630785",
+ "modified_by": "Administrator",
+ "module": "Airplane app",
+ "name": "testing backgroung job",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}
