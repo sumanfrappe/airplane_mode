@@ -3,26 +3,12 @@
 
 import frappe
 from frappe.model.document import Document
+from frappe.utils.synchronization import filelock
 
 import time
 
 class demo_doc(Document):
 	def update_gate_number_in_background(self, new_gate_number):
-
-		# frappe.publish_progress(0, title='backgrouhng job is running', description="please wait")
-		# time.sleep(2)
-		# frappe.publish_progress(20, title='backgrouhng job is running', description="please wait")
-		# time.sleep(2)
-		# frappe.publish_progress(40, title='backgrouhng job is running', description="please wait")
-		# time.sleep(2)
-		# frappe.publish_progress(60, title='backgrouhng job is running', description="please wait")
-		# time.sleep(2)
-		# frappe.publish_progress(80, title='backgrouhng job is running', description="please wait")
-		# time.sleep(2)
-		# frappe.publish_progress(100, title='backgrouhng job is running', description="please wait")
-		# time.sleep(2)
-
-
 		linked_records = frappe.get_all(
 			"testing backgroung job",
 			filters={
@@ -59,4 +45,11 @@ class demo_doc(Document):
 		
 		frappe.msgprint("request given to queue")
 
-	
+	# def send_birthday_reminders():
+	# 	"""Send Employee birthday reminders if no 'Stop Birthday Reminders' is not set."""
+	# 	to_send = int(frappe.db.get_single_value("HR Settings", "send_birthday_reminders"))
+	# 	if not to_send:
+	# 		return
+	# 	sender = get_sender_email()
+	# 	employees_born_today = get_employees_who_are_born_today()
+	# 	for company, birthday_persons in employees_born_today.items():

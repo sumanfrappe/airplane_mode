@@ -155,8 +155,8 @@ doctype_list = [
 
 
 # doc_events = {
-#     "Airplane Flight": {
-#         "on_update": "airplane_mode.airplane_app.doctype.airplane_flight.airplane_flight.on_update"
+#     "Shop": {
+#         "validate": "airplane_mode.airport_shop_management.doctype.shop.api.check_events"
 #     }
 # }
 
@@ -165,11 +165,9 @@ doctype_list = [
 
 
 scheduler_events = {
-    # "cron": {
-    #     "* * * * *": [  
-    #         "airplane_mode.airplane_app.doctype.airplane_flight.airplane_flight.update_gate_numbers"
-    #     ]
-    # },
+    "daily": [  
+            "airplane_mode.airport_shop_management.doctype.tenant.tenant.update_expired_tenants"
+        ],
 
 	"monthly": [
         "airplane_mode.airport_shop_management.doctype.rent_payment.rent_payment.send_rent_reminder"
@@ -256,3 +254,10 @@ scheduler_events = {
 fixtures = [
     "Shop Type"
 ]
+
+
+# test_string = "value"
+# test_list = ["value"]
+# test_dict = {
+#     "key": "value"
+# }

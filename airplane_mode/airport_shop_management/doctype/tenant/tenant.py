@@ -7,18 +7,21 @@ from frappe.utils import today
 
 
 class Tenant(Document):
-	def update_expired_tenants():
-		# Get all tenants whose lease end date is today or earlier and are still active
-		tenants = frappe.get_all("Tenant", 
-								filters={"status": "Active", "lease_end": ["<=", today()]}, 
-								fields=["name", "shop"])
+	pass
 
-		for tenant in tenants:
-			# Update tenant status to Expired
-			frappe.db.set_value("Tenant", tenant.name, "status", "Expired")
 
-			# Update the shop status to Available
-			if tenant.shop:
-				frappe.db.set_value("Shop", tenant.shop, "status", "Available")
+def update_expired_tenants():
+	# Get all tenants whose lease end date is today or earlier and are still active
+	tenants = frappe.get_all("Tenant", 
+							filters={"status": "Active", "lease_end": ["<=", today()]}, 
+							fields=["name", "shop"])
 
-		frappe.db.commit()  # Ensure changes are saved
+	for tenant in tenants:
+		# Update tenant status to Expired
+		frappe.db.set_value("Tenant", tenant.name, "status", "Expired")
+
+		# Update the shop status to Available
+		if tenant.shop:
+			frappe.db.set_value("Shop", tenant.shop, "status", "Available")
+
+	frappe.db.commit()  # Ensure changes are saved
