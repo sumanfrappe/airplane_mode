@@ -29,27 +29,20 @@ class demo_doc(Document):
 		frappe.publish_realtime("msgprint", f"process {linked_records} completed", user = frappe.session.user)
 		
 
-	def before_save(self):
-		# Get the current value from the database
-		old_gate_number = frappe.db.get_value("demo_doc", self.name, "gate_number")
+	# def before_save(self):
+	# 	# Get the current value from the database
+	# 	old_gate_number = frappe.db.get_value("demo_doc", self.name, "gate_number")
 
-		# If gate_number has changed, trigger background update
-		if old_gate_number != self.gate_number:
-			frappe.enqueue(
-				self.update_gate_number_in_background,
-				new_gate_number=self.gate_number,
-				queue='short',
-				timeout=200,
-				is_async=True
-        	)
+	# 	# If gate_number has changed, trigger background update
+	# 	if old_gate_number != self.gate_number:
+	# 		frappe.enqueue(
+	# 			self.update_gate_number_in_background,
+	# 			new_gate_number=self.gate_number,
+	# 			queue='short',
+	# 			timeout=200,
+	# 			is_async=True
+    #     	)
 		
-		frappe.msgprint("request given to queue")
+	# 	frappe.msgprint("request given to queue")
 
-	# def send_birthday_reminders():
-	# 	"""Send Employee birthday reminders if no 'Stop Birthday Reminders' is not set."""
-	# 	to_send = int(frappe.db.get_single_value("HR Settings", "send_birthday_reminders"))
-	# 	if not to_send:
-	# 		return
-	# 	sender = get_sender_email()
-	# 	employees_born_today = get_employees_who_are_born_today()
-	# 	for company, birthday_persons in employees_born_today.items():
+	

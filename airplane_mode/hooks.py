@@ -34,7 +34,7 @@ app_pages = [
 
 # include js, css files in header of desk.html
 # app_include_css = "/assets/airplane_mode/css/airplane_mode.css"
-# app_include_js = "/assets/airplane_mode/js/airline.js"
+# app_include_js = "/assets/airplane_mode/js/custom_dialog.js"
 
 # include js, css files in header of web template
 # web_include_css = "/assets/airplane_mode/css/airplane_mode.css"

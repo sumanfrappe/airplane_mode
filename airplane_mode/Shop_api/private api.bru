@@ -1,0 +1,23 @@
+meta {
+  name: private api
+  type: http
+  seq: 8
+}
+
+post {
+  url: http://demo.com:8000/api/method/frappe.client.get
+  body: json
+  auth: none
+}
+
+headers {
+  Authorization: token 7d1f67f5f4cc807:947c17750cb1ae0
+}
+
+body:json {
+  {
+      "doctype": "Shop",
+      "name": "SHOP-001"
+  }
+  
+}

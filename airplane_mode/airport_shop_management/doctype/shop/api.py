@@ -7,3 +7,12 @@ import frappe
 
 # def check_events(doc, event):
 #     frappe.msgprint(f"validated this {doc.name} and {event}")
+
+
+@frappe.whitelist()
+def receive_post_data():
+    data = frappe.request.data
+
+    print("data is----------->", data)
+
+    return

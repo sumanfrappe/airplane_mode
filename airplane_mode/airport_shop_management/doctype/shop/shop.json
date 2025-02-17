@@ -1,5 +1,6 @@
 {
  "actions": [],
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "format:{shop_number}",
  "creation": "2025-02-10 11:54:44.122465",
@@ -60,7 +61,7 @@
  ],
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2025-02-11 14:37:50.245424",
+ "modified": "2025-02-13 18:17:13.952273",
  "modified_by": "Administrator",
  "module": "Airport Shop Management",
  "name": "Shop",
@@ -72,6 +73,7 @@
    "delete": 1,
    "email": 1,
    "export": 1,
+   "import": 1,
    "print": 1,
    "read": 1,
    "report": 1,

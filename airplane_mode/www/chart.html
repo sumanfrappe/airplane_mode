@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>My Frappe Web Page</title>
+    <!-- Include Frappe Charts Library -->
+    <script src="https://unpkg.com/frappe-charts/dist/frappe-charts.min.iife.js"></script>
+</head>
+<body>
+    <div id="chart"></div>
+
+    <script>
+      // Initialize empty data
+      const data = {
+        labels: [],
+        datasets: [
+          {
+            name: "Some Data",
+            values: [],
+          },
+        ],
+      };
+
+      // Create a new line chart
+      let chart = new frappe.Chart("#chart", {
+        title: "My Realtime Chart",
+        data: data,
+        type: "line",
+        height: 250,
+        colors: ["#7cd6fd", "#743ee2"]
+      });
+
+      // Simulate real-time data update
+      setInterval(() => {
+        const newValue = Math.floor(Math.random() * 100);
+        const newLabel = new Date().toLocaleTimeString();
+
+        // Push new data points
+        data.labels.push(newLabel);
+        data.datasets[0].values.push(newValue);
+
+        // Limit to last 8 data points
+        if (data.labels.length > 8) {
+          data.labels.shift();
+          data.datasets[0].values.shift();
+        }
+
+        // Update the chart
+        chart.update(data);
+      }, 2000); // Update every 2 seconds
+    </script>
+</body>
+</html>
